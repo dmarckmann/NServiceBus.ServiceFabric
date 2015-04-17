@@ -1,0 +1,115 @@
+﻿Results on local Z420 with SSD for non-SSD drive and disk for log drive.
+
+FabAct-0.2 (OLD):
+==========
+
+========= 70% Read, 30% Write
+
+ .\PresenceLoadDriverConsole.exe /t:Remote /d:9 /o:1000 /s:10000
+
+Id, TotalReads, TotalWrites, TotalElaspedMills, MinReadMillis, MaxReadMillis, MinWriteMillis, MaxWriteMillis
+0, 67748, 32252, 79547, 0, 24271, 129, 25967
+1, 68625, 31375, 79542, 0, 20757, 1, 20774
+2, 68845, 31155, 78722, 0, 20772, 1, 21139
+3, 68674, 31326, 79384, 0, 24303, 2, 24032
+4, 69777, 30223, 78676, 0, 23582, 3, 23522
+5, 68833, 31167, 79209, 0, 21508, 3, 20301
+6, 66498, 33502, 79664, 0, 21602, 37, 21538
+7, 69781, 30219, 79444, 1, 21026, 9, 21034
+8, 68918, 31082, 77197, 0, 21777, 341, 21782
+
+Total Operations: = 900000
+        Total Reads        = 617699
+        Total Writes       = 282301
+        Percentage Reads   = 68.6332222222222
+
+Max Elasped Time Wall Clock: = 79664 milliseconds
+Min Elasped Time Wall Clock: = 77197 milliseconds
+Avg Elasped Time Wall Clock: = 79042 milliseconds
+
+Max Throughput: = 11658.4841379846 op/seconds
+Min Throughput: = 11297.4492870054 op/seconds
+Avg Throughput: = 11386.3515599302 op/seconds
+
+
+========= 100% Read 
+
+
+.\PresenceLoadDriverConsole.exe /t:Remote /d:9 /o:1000 /s:10000  /r:1
+Id, TotalReads, TotalWrites, TotalElaspedMills, MinReadMillis, MaxReadMillis, MinWriteMillis, MaxWriteMillis
+0, 100000, 0, 35610, 0, 12262, 9223372036854775807, -9223372036854775808
+1, 100000, 0, 33283, 0, 11749, 9223372036854775807, -9223372036854775808
+2, 100000, 0, 35643, 0, 7913, 9223372036854775807, -9223372036854775808
+3, 100000, 0, 35939, 0, 10364, 9223372036854775807, -9223372036854775808
+4, 100000, 0, 33429, 0, 8399, 9223372036854775807, -9223372036854775808
+5, 100000, 0, 36138, 0, 17048, 9223372036854775807, -9223372036854775808
+6, 100000, 0, 34434, 0, 7710, 9223372036854775807, -9223372036854775808
+7, 100000, 0, 35620, 0, 13098, 9223372036854775807, -9223372036854775808
+8, 100000, 0, 35044, 0, 12998, 9223372036854775807, -9223372036854775808
+
+Total Operations: = 900000
+        Total Reads        = 900000
+        Total Writes       = 0
+        Percentage Reads   = 100
+
+Max Elasped Time Wall Clock: = 36138 milliseconds
+Min Elasped Time Wall Clock: = 33283 milliseconds
+Avg Elasped Time Wall Clock: = 35015 milliseconds
+
+Max Throughput: = 27040.8316558003 op/seconds
+Min Throughput: = 24904.5326249377 op/seconds
+Avg Throughput: = 25703.2700271312 op/seconds
+
+==========
+
+FabAct-1.0 (NEW):
+
+
+========= 70% Read, 30% Write
+
+.\PresenceLoadDriverConsole.exe /t:Remote /d:9 /o:1000 /s:10000
+
+Id, TotalReads, TotalWrites, TotalElaspedMills, MinReadMillis, MaxReadMillis, MinWriteMillis, MaxWriteMillis
+0, 70480, 29520, 112604, 0, 26849, 1, 26674
+1, 66336, 33664, 109749, 0, 30558, 2, 30667
+2, 68832, 31168, 112635, 0, 39538, 1, 39733
+3, 64850, 35150, 110910, 0, 30110, 3, 30116
+4, 66233, 33767, 113949, 0, 39227, 2, 38776
+5, 65726, 34274, 114121, 0, 33700, 1, 33701
+6, 66979, 33021, 111875, 0, 27952, 1, 27849
+7, 66103, 33897, 111519, 0, 33394, 4, 33478
+8, 68786, 31214, 110815, 0, 27060, 4, 26566
+
+Total Operations: = 900000
+        Total Reads        = 604325
+        Total Writes       = 295675
+        Percentage Reads   = 67.1472222222222
+
+Max Elasped Time Wall Clock: = 114121 milliseconds
+Min Elasped Time Wall Clock: = 109749 milliseconds
+Avg Elasped Time Wall Clock: = 112019 milliseconds
+
+Max Throughput: = 8200.53030095946 op/seconds
+Min Throughput: = 7886.36622532225 op/seconds
+Avg Throughput: = 8034.35131540185 op/seconds
+
+========= 100% Read
+
+.\PresenceLoadDriverConsole.exe /t:Remote /d:9 /o:1000 /s:10000 /r:1
+
+Total Operations: = 900000
+        Total Reads        = 900000
+        Total Writes       = 0
+        Percentage Reads   = 100
+
+Max Elasped Time Wall Clock: = 56955 milliseconds
+Min Elasped Time Wall Clock: = 55051 milliseconds
+Avg Elasped Time Wall Clock: = 56279 milliseconds
+
+Max Throughput: = 16348.4768669052 op/seconds
+Min Throughput: = 15801.9489070319 op/seconds
+Avg Throughput: = 15991.7553616802 op/seconds
+
+=========
+
+

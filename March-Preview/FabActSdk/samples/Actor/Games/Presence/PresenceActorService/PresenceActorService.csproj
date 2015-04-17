@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{49BD28DA-97C2-4B64-9812-B7BB2100F27A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Fabric.Actor.Samples</RootNamespace>
+    <AssemblyName>PresenceActorService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FabActSdkBinPath Condition=" '$(FabActSdkPath)' == '' ">..\..\..\..\..\bin</FabActSdkBinPath>
+    <FabActSdkBinPath Condition=" '$(FabActSdkPath)' != '' ">$(FabActSdkPath)\bin</FabActSdkBinPath>
+    <FabActUtil>$(FabActSdkBinPath)\FabActUtil.exe</FabActUtil>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationPrefix>PresenceActorApp</ApplicationPrefix>
+    <ServicePackagePrefix>PresenceActorService</ServicePackagePrefix>
+    <PackageRoot>..\PackageRoot</PackageRoot>
+    <ApplicationPackagePath>$(PackageRoot)\$(ApplicationPrefix)Pkg</ApplicationPackagePath>
+    <ServicePackagePath>$(ApplicationPackagePath)\$(ServicePackagePrefix)Pkg</ServicePackagePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Fabric" />
+    <Reference Include="System.Fabric.Services">
+      <HintPath>$(FabActSdkBinPath)\System.Fabric.Services.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameActor.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="PlayerActor.cs" />
+    <Compile Include="PlayerState.cs" />
+    <Compile Include="PresenceActor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(ServicePackagePath)\Config\Settings.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="$(ServicePackagePath)\ServiceManifest.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="$(ApplicationPackagePath)\ApplicationManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PresenceInterfaces\PresenceInterfaces.csproj">
+      <Project>{ebcb3f0a-6ec7-4fee-8e8a-c7e20354ee09}</Project>
+      <Name>PresenceInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(FabActSdkBinPath)\FabActSdk.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <CallTarget Targets="FabActUtilGenerateManifest" />
+    <CallTarget Targets="FabActUtilGenerateScript" />
+    <ItemGroup>
+      <OutputFiles Include="$(OutDir)**\*.*" />
+    </ItemGroup>
+    <RemoveDir Directories="$(ServicePackagePath)\Code" />
+    <Copy SourceFiles="@(OutputFiles)" DestinationFiles="@(OutputFiles-&gt;'$(ServicePackagePath)\Code\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+</Project>
