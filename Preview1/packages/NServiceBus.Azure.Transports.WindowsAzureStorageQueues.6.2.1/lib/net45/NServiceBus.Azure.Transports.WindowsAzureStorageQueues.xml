@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NServiceBus.Azure.Transports.WindowsAzureStorageQueues</name>
+    </assembly>
+    <members>
+        <member name="T:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueCreator">
+            <summary>
+            Creates the queues. Note that this class will only be invoked when running the windows host and not when running in the fabric
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueReceiver.PeekInterval">
+            <summary>
+            Sets the amount of time, in milliseconds, to add to the time to wait before checking for a new message
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueReceiver.MaximumWaitTimeWhenIdle">
+            <summary>
+            Sets the maximum amount of time, in milliseconds, that the queue will wait before checking for a new message
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueReceiver.PurgeOnStartup">
+            <summary>
+            Sets whether or not the transport should purge the input
+            queue when it is started.
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueReceiver.MessageInvisibleTime">
+            <summary>
+            Controls how long messages should be invisible to other callers when receiving messages from the queue
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueReceiver.BatchSize">
+            <summary>
+            Controls the number of messages that will be read in bulk from the queue
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueSender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueSender.MessageSerializer">
+            <summary>
+            Gets or sets the message serializer
+            </summary>
+        </member>
+        <member name="T:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.AzureMessageQueueUtils">
+            <summary>
+            Helper class 
+            </summary>
+        </member>
+        <member name="T:NServiceBus.AzureStorageQueueTransport">
+            <summary>
+            Transport definition for AzureStorageQueue
+            </summary>
+        </member>
+        <member name="M:NServiceBus.AzureStorageQueueTransport.Configure(NServiceBus.BusConfiguration)">
+            <summary>
+            Gives implementations access to the <see cref="T:NServiceBus.BusConfiguration"/> instance at configuration time.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.AzureStorageTransportExtensions.PeekInterval(NServiceBus.TransportExtensions{NServiceBus.AzureStorageQueueTransport},System.Int32)">
+            <summary>
+            Sets the amount of time, in milliseconds, to add to the time to wait before checking for a new message
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.AzureStorageTransportExtensions.MaximumWaitTimeWhenIdle(NServiceBus.TransportExtensions{NServiceBus.AzureStorageQueueTransport},System.Int32)">
+            <summary>
+            Sets the maximum amount of time, in milliseconds, that the queue will wait before checking for a new message
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.AzureStorageTransportExtensions.MessageInvisibleTime(NServiceBus.TransportExtensions{NServiceBus.AzureStorageQueueTransport},System.Int32)">
+            <summary>
+            Controls how long messages should be invisible to other callers when receiving messages from the queue
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.AzureStorageTransportExtensions.BatchSize(NServiceBus.TransportExtensions{NServiceBus.AzureStorageQueueTransport},System.Int32)">
+            <summary>
+            Controls how many messages should be read from the queue at once
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.ConfigureAzureMessageQueue.MaximumWaitTimeWhenIdle(NServiceBus.Configure,System.Int32)">
+            <summary>
+            Sets the maximum amount of time, in milliseconds, that the queue will wait before checking for a new message
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.ConfigureAzureMessageQueue.MessageInvisibleTime(NServiceBus.Configure,System.Int32)">
+            <summary>
+            Controls how long messages should be invisible to other callers when receiving messages from the queue
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NServiceBus.ConfigureAzureMessageQueue.BatchSize(NServiceBus.Configure,System.Int32)">
+            <summary>
+            Controls how many messages should be read from the queue at once
+            </summary>
+            <param name="config"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.PollingDequeueStrategy">
+            <summary>
+            A polling implementation of <see cref="T:NServiceBus.Transports.IDequeueMessages"/>.
+            </summary>
+        </member>
+        <member name="M:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.PollingDequeueStrategy.Init(NServiceBus.Address,NServiceBus.Unicast.Transport.TransactionSettings,System.Func{NServiceBus.TransportMessage,System.Boolean},System.Action{NServiceBus.TransportMessage,System.Exception})">
+            <summary>
+            Initializes the <see cref="T:NServiceBus.Transports.IDequeueMessages"/>.
+            </summary>
+            <param name="address">The address to listen on.</param>
+            <param name="transactionSettings">The <see cref="T:NServiceBus.Unicast.Transport.TransactionSettings"/> to be used by <see cref="T:NServiceBus.Transports.IDequeueMessages"/>.</param>
+            <param name="tryProcessMessage">Called when a message has been dequeued and is ready for processing.</param>
+            <param name="endProcessMessage">Needs to be called by <see cref="T:NServiceBus.Transports.IDequeueMessages"/> after the message has been processed regardless if the outcome was successful or not.</param>
+        </member>
+        <member name="M:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.PollingDequeueStrategy.Start(System.Int32)">
+            <summary>
+            Starts the dequeuing of message using the specified <paramref name="maximumConcurrencyLevel"/>.
+            </summary>
+            <param name="maximumConcurrencyLevel">Indicates the maximum concurrency level this <see cref="T:NServiceBus.Transports.IDequeueMessages"/> is able to support.</param>
+        </member>
+        <member name="M:NServiceBus.Azure.Transports.WindowsAzureStorageQueues.PollingDequeueStrategy.Stop">
+            <summary>
+            Stops the dequeuing of messages.
+            </summary>
+        </member>
+    </members>
+</doc>
