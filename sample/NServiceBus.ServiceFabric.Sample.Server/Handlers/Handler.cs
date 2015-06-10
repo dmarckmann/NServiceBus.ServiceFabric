@@ -21,8 +21,10 @@ namespace NServiceBus.ServiceFabric.Sample.Server
         {
             ServiceEventSource.Current.Message("Received start command");
 
+            ServiceEventSource.Current.Message("Publishing test event");
             _bus.Publish(new TestEvent());
 
+            ServiceEventSource.Current.Message("Deferring deferred message");
             _bus.Defer(TimeSpan.FromSeconds(5), new DeferredMessage()
             {
                 SomeCorrelationId = Guid.NewGuid()
