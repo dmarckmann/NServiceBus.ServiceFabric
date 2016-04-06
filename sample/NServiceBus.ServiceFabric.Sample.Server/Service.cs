@@ -8,15 +8,26 @@ using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services;
 using NServiceBus;
 using NServiceBus.ServiceFabric.Persistence;
+using Microsoft.ServiceFabric.Services.Runtime;
+using Microsoft.ServiceFabric.Services.Communication.Runtime;
+using System.Fabric;
 
 namespace NServiceBus.ServiceFabric.Sample.Server
 {
     public class Service : StatefulService
     {
-        protected override ICommunicationListener CreateCommunicationListener()
+        public Service(StatefulServiceContext context)
+            : base(context)
+        { }
+        //protected override ICommunicationListener CreateCommunicationListener()
+        //{
+        //    // TODO: Replace this with an ICommunicationListener implementation if your service needs to handle user requests.
+        //    return base.CreateCommunicationListener();
+        //}
+
+        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
-            // TODO: Replace this with an ICommunicationListener implementation if your service needs to handle user requests.
-            return base.CreateCommunicationListener();
+            return new ServiceReplicaListener[0];
         }
 
         protected override async Task RunAsync(CancellationToken cancellationToken)

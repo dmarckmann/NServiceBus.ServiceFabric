@@ -16,6 +16,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+
 # Roslyn cache directories
 *.ide/
 
@@ -129,7 +130,8 @@ publish/
 #*.pubxml
 
 # NuGet Packages Directory
-packages/*
+src/packages
+src/packages/*
 ## TODO: If the tool you use requires repositories.config
 ## uncomment the next line
 #!packages/repositories.config
@@ -138,7 +140,7 @@ packages/*
 # NuGet packages use it for MSBuild targets.
 # This line needs to be after the ignore of the build folder
 # (and the packages folder if the line above has been uncommented)
-!packages/build/
+!src/packages/build/
 
 # Windows Azure Build Output
 csx/
